@@ -1,9 +1,14 @@
 package com.alexei.vacine.vacinecrmapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Vaccination {
@@ -11,8 +16,17 @@ public class Vaccination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "{nameVacine.not.blank}")
     private String nameVacine;
+
+    @NotBlank(message = "{date.not.blank}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String date;
+
+    @NotBlank(message = "{emailPeople.not.blank}")
+    @Email(message = "{emailPeople.not.valid}")
+    @Column(unique = true)
     private String emailPeople;
 
     public Long getId() {

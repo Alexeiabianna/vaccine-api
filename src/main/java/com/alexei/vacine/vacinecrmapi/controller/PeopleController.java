@@ -2,6 +2,8 @@ package com.alexei.vacine.vacinecrmapi.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.alexei.vacine.vacinecrmapi.model.People;
 import com.alexei.vacine.vacinecrmapi.repository.PeopleRepository;
 
@@ -28,7 +30,7 @@ public class PeopleController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public People add(@RequestBody People people) {
+    public People add(@Valid @RequestBody People people) {
         return peopleRepository.save(people);
     }
 

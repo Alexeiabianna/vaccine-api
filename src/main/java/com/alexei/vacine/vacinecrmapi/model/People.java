@@ -1,11 +1,15 @@
 package com.alexei.vacine.vacinecrmapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -14,14 +18,22 @@ public class People {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;   
+
+    @NotBlank(message = "{name.not.blank}")
+    private String name;
+
+    @NotBlank(message = "{birthdate.not.blank}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String birthdate;
     
-    @NotNull
+    @NotBlank(message = "{email.not.blank}")
+    @Email(message = "{email.not.valid}")
+    @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Size(min=11, max=12)
+    @NotBlank(message = "{cpf.not.blank}")
+    @CPF
+    @Column(unique = true)
     private String cpf;
 
     public Long getId() {

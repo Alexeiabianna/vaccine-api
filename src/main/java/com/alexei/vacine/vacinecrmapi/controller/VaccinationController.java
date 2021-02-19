@@ -2,6 +2,8 @@ package com.alexei.vacine.vacinecrmapi.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.alexei.vacine.vacinecrmapi.model.Vaccination;
 import com.alexei.vacine.vacinecrmapi.repository.VaccinationRepository;
 
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/vaccination")
-public class VacinationController {
+public class VaccinationController {
 
     @Autowired
     private VaccinationRepository vaccinationRepository;
@@ -29,7 +31,7 @@ public class VacinationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Vaccination add(@RequestBody Vaccination vaccination) {
+    public Vaccination add(@RequestBody @Valid Vaccination vaccination) {
         return vaccinationRepository.save(vaccination);
     }
     
