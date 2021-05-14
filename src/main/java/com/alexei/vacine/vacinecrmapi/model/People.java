@@ -11,10 +11,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 public class People {
-    
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -26,7 +25,7 @@ public class People {
     @NotBlank(message = "{birthdate.not.blank}")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String birthdate;
-    
+
     @NotBlank(message = "{email.not.blank}")
     @Email(message = "{email.not.valid}")
     @Column(unique = true)
@@ -126,7 +125,4 @@ public class People {
         return true;
     }
 
-    public People() {
-    }
-    
 }

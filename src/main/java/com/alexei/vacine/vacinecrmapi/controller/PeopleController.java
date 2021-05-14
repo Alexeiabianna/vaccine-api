@@ -33,5 +33,4 @@ public class PeopleController {
     public People add(@Valid @RequestBody People people) {
         return peopleRepository.save(people);
     }
-
 }
